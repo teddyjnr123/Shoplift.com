@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoplift - Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="logo">Shoplift</a>
+        <span class="tag">Phones • Laptops • Gadgets</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">☰</button>
+    </div>
+
+    <nav id="mobile-nav" class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h1>Contact Us</h1>
+        <p class="lead">Have questions? We’re here to help. Reach out to us anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section class="section">
+    <div class="container contact-grid">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+          <button type="submit" class="btn primary">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p><strong>Email:</strong> support@shoplift.com</p>
+        <p><strong>Phone:</strong> +233 123 456 789</p>
+        <p><strong>Address:</strong> 123 Tech Avenue, Accra, Ghana</p>
+        <p><strong>Working Hours:</strong> Mon-Fri, 9:00am - 6:00pm</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Shoplift</h4>
+        <p>Leading online store for phones, laptops & gadgets.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: support@shoplift.com</p>
+        <p>Phone: +233 123 456 789</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Shoplift. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script>
+    // ===== Contact Form Submission =====
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert("Thank you! Your message has been sent.");
+      contactForm.reset();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Shoplift</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="logo">Shoplift</a>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container checkout-box">
+      <h2>Checkout</h2>
+      <div class="checkout-item">
+        <img id="checkout-image" src="" alt="Product" class="checkout-img">
+        <div class="checkout-info">
+          <h3 id="checkout-name">Product Name</h3>
+          <p id="checkout-price">GHS 0</p>
+        </div>
+      </div>
+
+      <button class="btn primary" id="pay-btn">Pay with Paystack</button>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2025 Shoplift. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Paystack -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

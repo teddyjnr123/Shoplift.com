@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoplift - About Us</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== Extra Styling for About Page ===== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      margin-top: 2rem;
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .team-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #003366;
+    }
+
+    .team-card p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="logo">Shoplift</a>
+        <span class="tag">Phones • Laptops • Gadgets</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">☰</button>
+    </div>
+
+    <nav id="mobile-nav" class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h1>About Shoplift</h1>
+        <p class="lead">We are committed to providing the best phones, laptops, and gadgets with unmatched service.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Mission & Vision ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Mission & Vision</h2>
+      </div>
+      <p><strong>Mission:</strong> To deliver high-quality tech products with excellent customer service, making technology accessible to everyone.</p>
+      <p><strong>Vision:</strong> To become the most trusted online store for phones, laptops, and gadgets in Ghana and beyond.</p>
+    </div>
+  </section>
+
+  <!-- ===== Team Section ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Meet Our Team</h2>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="my pic.jpg" alt="John Kitegui" onerror="this.src='https://via.placeholder.com/250x250?text=No+Image'">
+          <h4>John Kitegui</h4>
+          <p>Founder & CEO</p>
+        </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Shoplift</h4>
+        <p>Leading online store for phones, laptops & gadgets.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: support@shoplift.com</p>
+        <p>Phone: +233 123 456 789</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Shoplift. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+</body>
+</html>

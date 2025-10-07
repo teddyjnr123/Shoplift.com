@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoplift - Products</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="index.html" class="logo">Shoplift</a>
+      <span class="tag">Phones • Laptops • Gadgets</span>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="products.html" class="nav-link active">Products</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">☰</button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <h1>All Products</h1>
+    <p class="lead">Explore our full range of high-quality phones, laptops, and gadgets</p>
+    <input type="text" id="search" placeholder="Search products..." style="padding:0.7em; width:100%; margin-top:1em;">
+  </div>
+</section>
+
+<!-- ===== Category Filter ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Filter by Category</h2>
+    </div>
+    <div id="category-grid" class="category-grid"></div>
+  </div>
+</section>
+
+<!-- ===== Products Grid ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Products</h2>
+    </div>
+    <div id="product-grid" class="product-grid"></div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>Shoplift</h4>
+      <p>Leading online store for phones, laptops & gadgets.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>Email: support@shoplift.com</p>
+      <p>Phone: +233 123 456 789</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Shoplift. All rights reserved.
+  </div>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  // Mobile toggle
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileNav = document.getElementById("mobile-nav");
+  menuBtn.addEventListener("click", () => mobileNav.classList.toggle("open"));
+
+  // ✅ Product data (with working image URLs)
+  let products = [
+    {
+      id: 1,
+      name: "iPhone 14",
+      category: "Phones",
+      price: 5500,
+      stock: 10,
+      description: "Latest Apple iPhone 14 with A15 Bionic chip and improved camera system.",
+      rating: 4.5,
+      image: "14.jpg"
+    },
+    {
+      id: 2,
+      name: "Samsung Galaxy S23",
+      category: "Phones",
+      price: 4800,
+      stock: 15,
+      description: "Samsung flagship phone with Dynamic AMOLED display and triple camera setup.",
+      rating: 4.7,
+      image: "samsung.jpg"
+    },
+    {
+      id: 3,
+      name: "MacBook Pro 16",
+      category: "Laptops",
+      price: 12000,
+      stock: 5,
+      description: "Apple MacBook Pro 16-inch M2 Max with Liquid Retina XDR display.",
+      rating: 4.8,
+      image: "macbook.jpg"
+    },
+    {
+      id: 4,
+      name: "Dell XPS 13",
+      category: "Laptops",
+      price: 9500,
+      stock: 8,
+      description: "Powerful and sleek Dell laptop with InfinityEdge display and long battery life.",
+      rating: 4.6,
+      image: "dell.jpeg"
+    },
+    {
+      id: 5,
+      name: "Apple Watch Series 9",
+      category: "Smartwatches",
+      price: 2000,
+      stock: 12,
+      description: "Track your health and workouts with the Apple Watch Series 9.",
+      rating: 4.4,
+      image: "watches.jpg"
+    },
+    {
+      id: 6,
+      name: "AirPods Pro",
+      category: "Accessories",
+      price: 1200,
+      stock: 20,
+      description: "Wireless earbuds with active noise cancellation and spatial audio.",
+      rating: 4.5,
+      image: "airpods.jpg"
+    },
+    {
+      id: 7,
+      name: "Samsung Galaxy Buds 3",
+      category: "Accessories",
+      price: 900,
+      stock: 18,
+      description: "High-quality Samsung earbuds with deep bass and clear audio.",
+      rating: 4.3,
+      image: "samsung airpods.jpg"
+    }
+  ];
+
+  const categories = ["Phones", "Laptops", "Smartwatches", "Accessories"];
+  const categoryGrid = document.getElementById("category-grid");
+  const productGrid = document.getElementById("product-grid");
+  const searchInput = document.getElementById("search");
+
+  // Render categories
+  categories.forEach(cat => {
+    const div = document.createElement("div");
+    div.classList.add("category-card");
+    div.innerHTML = `<div class="cat-name">${cat}</div>`;
+    div.addEventListener("click", () => filterProducts(cat));
+    categoryGrid.appendChild(div);
+  });
+
+  // Render products
+  function renderProducts(list) {
+    productGrid.innerHTML = "";
+    list.forEach(p => {
+      const card = document.createElement("div");
+      card.classList.add("product-card");
+      card.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/250x200?text=No+Image'">
+        <div class="product-info">
+          <h4>${p.name}</h4>
+          <p>${p.description}</p>
+          <div class="product-meta">Price: GHS ${p.price.toFixed(2)}</div>
+          <div class="product-meta">Stock: ${p.stock}</div>
+          <div class="product-meta">Rating: ${p.rating} ⭐</div>
+          <button class="btn primary" onclick="payWithPaystack('${p.name}', ${p.price})">Buy Now</button>
+        </div>
+      `;
+      productGrid.appendChild(card);
+    });
+  }
+
+  // Filter products
+  function filterProducts(category) {
+    const filtered = products.filter(p => p.category === category);
+    renderProducts(filtered);
+  }
+
+  // Search
+  searchInput.addEventListener("input", () => {
+    const term = searchInput.value.toLowerCase();
+    const filtered = products.filter(p => p.name.toLowerCase().includes(term));
+    renderProducts(filtered);
+  });
+
+  // Initial render
+  renderProducts(products);
+
+  // Paystack integration
+  function payWithPaystack(productName, amount) {
+    let handler = PaystackPop.setup({
+      key: 'pk_test_8974f63f00bdcbbc8258ea91930c3a8138bdf0b4',
+      email: 'customer@example.com',
+      amount: amount * 100,
+      currency: 'GHS',
+      ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+      metadata: {
+        custom_fields: [
+          { display_name: "Product", variable_name: "product", value: productName }
+        ]
+      },
+      callback: function (response) {
+        alert('Payment successful! Ref: ' + response.reference);
+      },
+      onClose: function () {
+        alert('Transaction cancelled.');
+      }
+    });
+    handler.openIframe();
+  }
+</script>
+
+</body>
+</html>
