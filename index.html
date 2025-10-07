@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoplift - Home</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== Home Page Image & Layout Fix ===== */
+    .product-grid, .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .product-card, .category-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover, .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .product-card img, .category-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .cat-name {
+      font-weight: bold;
+      font-size: 1rem;
+      color: #003366;
+      margin-top: 0.5rem;
+    }
+
+    .section-head h2 {
+      color: #003366;
+      margin-bottom: 0.3rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,7 +61,7 @@
       </div>
 
       <nav class="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link active">Home</a>
         <a href="products.html" class="nav-link">Products</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -62,19 +106,19 @@
       </div>
       <div class="category-grid">
         <div class="category-card">
-          <img src="phones.jpg" alt="Phones">
+          <img src="phones.jpg" alt="Phones" onerror="this.src='https://via.placeholder.com/250x200?text=Phones'">
           <div class="cat-name">Phones</div>
         </div>
         <div class="category-card">
-          <img src="laptops.jpg" alt="Laptops">
+          <img src="laptops.jpg" alt="Laptops" onerror="this.src='https://via.placeholder.com/250x200?text=Laptops'">
           <div class="cat-name">Laptops</div>
         </div>
         <div class="category-card">
-          <img src="watches.jpg" alt="Smartwatches">
+          <img src="watches.jpg" alt="Smartwatches" onerror="this.src='https://via.placeholder.com/250x200?text=Smartwatches'">
           <div class="cat-name">Smartwatches</div>
         </div>
         <div class="category-card">
-          <img src="accessories.jpg" alt="Accessories">
+          <img src="accessories.jpg" alt="Accessories" onerror="this.src='https://via.placeholder.com/250x200?text=Accessories'">
           <div class="cat-name">Accessories</div>
         </div>
       </div>
@@ -121,31 +165,36 @@
   <!-- ===== Scripts ===== -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src="script.js" defer></script>
+
   <script>
     const menuBtn = document.getElementById("menu-btn");
     const mobileNav = document.getElementById("mobile-nav");
     menuBtn.addEventListener("click", () => mobileNav.classList.toggle("open"));
 
-    // Fetch featured products from API
+    // Featured Products
     const featuredGrid = document.getElementById("featured-products");
-    fetch("/api/products")
-      .then(res => res.json())
-      .then(products => {
-        products.slice(0, 4).forEach(product => { // show first 4 as featured
-          const card = document.createElement("div");
-          card.classList.add("product-card");
-          card.innerHTML = `
-            <img src="https://via.placeholder.com/250x200?text=${encodeURIComponent(product.name)}" alt="${product.name}">
-            <div class="product-info">
-              <h4>${product.name}</h4>
-              <div class="product-meta">GHS ${product.price.toFixed(2)}</div>
-              <button class="btn primary" onclick="payWithPaystack('${product.name}', ${product.price})">Buy Now</button>
-            </div>
-          `;
-          featuredGrid.appendChild(card);
-        });
-      });
+    const featuredProducts = [
+      { name: "iPhone 14", price: 5500, image: "14.jpg" },
+      { name: "MacBook Pro 16", price: 12000, image: "macbook.jpg" },
+      { name: "Samsung Galaxy S23", price: 4800, image: "samsung.jpg" },
+      { name: "Apple Watch Series 9", price: 2000, image: "apple watch.jpg" }
+    ];
 
+    featuredProducts.forEach(product => {
+      const card = document.createElement("div");
+      card.classList.add("product-card");
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/250x200?text=${encodeURIComponent(product.name)}'">
+        <div class="product-info">
+          <h4>${product.name}</h4>
+          <div class="product-meta">GHS ${product.price.toFixed(2)}</div>
+          <button class="btn primary" onclick="payWithPaystack('${product.name}', ${product.price})">Buy Now</button>
+        </div>
+      `;
+      featuredGrid.appendChild(card);
+    });
+
+    // Paystack
     function payWithPaystack(productName, amount) {
       let handler = PaystackPop.setup({
         key: 'pk_test_8974f63f00bdcbbc8258ea91930c3a8138bdf0b4',
@@ -160,5 +209,6 @@
       handler.openIframe();
     }
   </script>
+
 </body>
 </html>
